@@ -23,7 +23,7 @@ function LandingHero() {
 
       // Scroll down moves the ribbon left; scrolling back reverses its direction.
       const currentOffset = Number(track.dataset.offset || 0);
-      const nextOffset = (currentOffset - scrollDelta * 0.50) % window.innerWidth;
+      const nextOffset = (currentOffset - scrollDelta * 0.80) % window.innerWidth;
       track.dataset.offset = String(nextOffset);
       track.style.setProperty('--wave-offset', `${nextOffset}px`);
     };

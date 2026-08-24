@@ -117,13 +117,6 @@
 .home-action span { color: inherit; font-size: 1.2rem; }
 .home-scroll-hint { color: #e8bc55; bottom: 2.5rem; font: .65rem/1 monospace; letter-spacing: .12em; opacity: .55; position: absolute; right: clamp(1.5rem, 5vw, 5rem); text-transform: uppercase; transform: rotate(-90deg); transform-origin: right; }
 
-.home-section--navy { /*background: #101f3b; color: #f5f0df; 
-    background-image: linear-gradient(180deg, #101f3b 0%, #2d6b83 100%); 
-    transparent: 70%; 
-  background-image: url('./assets/bg-image.jpg');
-  background-size: cover;
-  background-position: top 30% center;*/
-}
 
 .home-section--navy::before {
   /* One solid blue color in front of the image; 0.95 leaves the image faintly visible. */
