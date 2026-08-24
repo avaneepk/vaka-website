@@ -1,0 +1,29 @@
+.stroke-text {
+  display: block;
+  font-family: var(--stroke-text-font, Arial, sans-serif);
+  width: 100%;
+  line-height: 0;
+}
+
+.stroke-text--hover {
+  cursor: pointer;
+}
+
+.stroke-text__svg {
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  height: var(--stroke-text-height, 160px);
+}
+
+.stroke-text__stroke,
+.stroke-text__fill {
+  user-select: none;
+}
+
+@media (max-width: 600px) {
+  .stroke-text__svg {
+    height: var(--stroke-text-height-mobile, 150px);
+    align-items: first baseline;
+  }
+}
