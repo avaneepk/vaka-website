@@ -12,8 +12,10 @@
   "dependencies": {
     "@coreui/coreui": "^5.9.0",
     "@coreui/react": "^5.13.0",
+    "@tailwindcss/vite": "^4.3.3",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",

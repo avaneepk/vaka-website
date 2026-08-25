@@ -27,6 +27,7 @@ const StrokeText = ({
   fontSize = 200,
   fontWeight = 800,
   letterSpacing = -4,
+  wordSpacing = -60,
   reverse = false,
   className = '',
   style = {}
@@ -229,7 +230,11 @@ const StrokeText = ({
           style={fontStyle}
         >
           {characters.map((char, index) => (
-            <tspan data-stroke-char key={`s-${index}`}>
+            <tspan
+              data-stroke-char
+              key={`s-${index}`}
+              dx={char === ' ' ? `${wordSpacing}px` : undefined}
+            >
               {char}
             </tspan>
           ))}
@@ -245,7 +250,11 @@ const StrokeText = ({
           clipPath={fillMode === 'wipe' && box ? `url(#${wipeId})` : undefined}
         >
           {characters.map((char, index) => (
-            <tspan data-fill-char key={`f-${index}`}>
+            <tspan
+              data-fill-char
+              key={`f-${index}`}
+              dx={char === ' ' ? `${wordSpacing}px` : undefined}
+            >
               {char}
             </tspan>
           ))}

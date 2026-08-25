@@ -3,7 +3,7 @@ import './Homepage.css'
 import StrokeText from './StrokeText.jsx';
 import vakaLogo from './assets/vaka-logo.png';
 import waves from './assets/waves (9).svg';
-
+import Navbar from './navbar.jsx';
 
 
 function LandingHero() {
@@ -43,16 +43,7 @@ function LandingHero() {
 
   return (
     <main className="homepage">
-      <nav className="home-nav" aria-label="Main navigation">
-        <a className="home-logo" href="#about" aria-label="Vaka ry home">VAKA<span>RY</span></a>
-        <div className="home-nav__links">
-          <a href="#mission">02</a>
-          <a href="#activities">03</a>
-          <a href="#community">04</a>
-          <a href="#join">05</a>
-        </div>
-      </nav>
-
+      <Navbar />
       <section className="home-section home-section--navy" id="about">
         <div className="home-section-content">
             <div className="home-section__texture" aria-hidden="true" />
