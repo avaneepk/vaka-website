@@ -9,13 +9,25 @@ function Homepage() {
         <LandingHero />
       <section className="home-section home-section--mist" id="mission">
         <div className="home-section__texture" aria-hidden="true" />
-        <div className="home-section_left">
-          <p className="home-eyebrow"><span>02</span>Our mission</p>
-          <h1><span>Care starts</span><span>close to home.</span></h1>
-          <p className="home-copy">We bring neighbors, boaters, and curious minds together to protect the place we share.</p>
-          <a className="home-action" href="#activities">What we do<span aria-hidden="true">-&gt;</span></a>
+        <div className="home-section__mission-grid">
+        
+          <div className="home-instagram-embed" aria-label="VAKA ry Instagram profile">
+            <iframe
+              title="VAKA ry Instagram profile"
+              src="https://www.instagram.com/vaka.ry/embed"
+              loading="lazy"
+              className="home-instagram-embed__frame"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+            <a
+              className="home-instagram-embed__link"
+              href="https://www.instagram.com/vaka.ry/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+            </a>
+          </div>
         </div>
-        <p className="home-scroll-hint" aria-hidden="true">Scroll to explore</p>
       </section>
 
       <section className="home-section home-section--coral" id="activities">

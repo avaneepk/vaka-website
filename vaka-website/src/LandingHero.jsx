@@ -5,7 +5,7 @@ import vakaLogo from './assets/vaka-logo.png';
 import waves from './assets/waves (9).svg';
 import instagram from './assets/icons8-instagram.svg';
 import youtube from './assets/icons8-youtube.svg';
-import Navbar from './navbar.jsx';
+import Navbar from './Navbar.jsx';
 
 
 function LandingHero() {
