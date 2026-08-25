@@ -3,6 +3,8 @@ import './Homepage.css'
 import StrokeText from './StrokeText.jsx';
 import vakaLogo from './assets/vaka-logo.png';
 import waves from './assets/waves (9).svg';
+import instagram from './assets/icons8-instagram.svg';
+import youtube from './assets/icons8-youtube.svg';
 import Navbar from './navbar.jsx';
 
 
@@ -53,9 +55,16 @@ function LandingHero() {
                 <div className="home-section_left">
                 <StrokeText
                     />
-                <p className="home-copy">Vesijarven Academic Kippistely Association VAKA ry is a 
-                    student culture association for the students of LUT and LAB universities in Lahti</p>
-                <a className="home-action" href="#mission">Discover our story<span aria-hidden="true">-&gt;</span></a>
+                <p className="home-copy">Vesijarven Academic Kippistely Association VAKA ry <br></br><br></br>
+                  Promoting and Preserving the culture and history for students of LUT & LAB higher education institutions in Lahti</p>
+                <div className="home-section__socials">
+                    <a href="https://www.instagram.com/vaka.ry/" target="_blank" rel="noopener noreferrer">
+                    <img src={instagram} alt="Instagram logo" />
+                    </a>
+                    <a href="https://www.youtube.com/@vaka_ry" target="_blank" rel="noopener noreferrer">
+                    <img src={youtube} alt="YouTube logo" />
+                    </a>
+                </div>
                 </div>
                 <div className="logo-graphic">
                 <img src={vakaLogo} alt="Vaka ry logo" />
