@@ -17,6 +17,9 @@ function LandingHero() {
 
     let animationFrame = null;
     let lastScrollY = window.scrollY;
+    const initialOffset = -window.innerWidth * 5;
+    track.dataset.offset = String(initialOffset);
+    track.style.setProperty('--wave-offset', `${initialOffset}px`);
 
     const updateWave = () => {
       animationFrame = null;
@@ -25,7 +28,7 @@ function LandingHero() {
 
       // Scroll down moves the ribbon left; scrolling back reverses its direction.
       const currentOffset = Number(track.dataset.offset || 0);
-      const nextOffset = (currentOffset - scrollDelta * 0.80) % window.innerWidth;
+      const nextOffset = (currentOffset - scrollDelta * 0.35) % window.innerWidth;
       track.dataset.offset = String(nextOffset);
       track.style.setProperty('--wave-offset', `${nextOffset}px`);
     };
@@ -73,8 +76,7 @@ function LandingHero() {
         </div>
         <div className="home-section-wave" aria-hidden="true">
           <div className="home-wave-track" ref={waveTrackRef}>
-            <img src={waves} alt="" />
-            <img src={waves} alt="" />
+            {Array.from({ length: 12 }, (_, index) => <img key={index} src={waves} alt="" />)}
           </div>
         </div>
       </section>

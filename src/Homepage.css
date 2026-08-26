@@ -35,7 +35,7 @@
   display: flex;
   height: 100%;
   width: max-content;
-  transform: translate3d(var(--wave-offset, 0px), 0, 0);
+  transform: translate3d(var(--wave-offset, -300vw), 0, 0);
   will-change: transform;
 }
 
@@ -48,7 +48,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-wave-track { transform: none; }
+  .home-wave-track { transform: translate3d(-300vw, 0, 0); }
 }
 
 .home-section-content { 
@@ -157,12 +157,45 @@
   z-index: 0;
 
 }
-.home-section--mist { background: #efeff1; color: #19352f; }
-.home-section--mist .stroke-heading { -webkit-text-stroke-color: #19352f; }
-.home-section--coral { background: #d96f55; color: #fff2dc; }
+.home-section--projects { background: #efeff1; color: #19352f; }
+.home-section--projects .stroke-heading { -webkit-text-stroke-color: #19352f; }
+.home-section--events { background: #d6d6d9; color: #19352f; }
+.home-section--events .home-section__texture { opacity: .45; }
+.home-section__events-inner {
+  align-items: center;
+  display: column;
+  gap: clamp(2rem, 6vw, 7rem);
+  margin: 0 auto;
+  max-width: 90rem;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+.home-section__events-heading { flex: 0 0 min(24rem, 28%); }
+.home-section__events-heading .home-copy { margin-left: 0; margin-right: 0; }
+.home-section__events-inner .accordion-gallery { flex: 1 1 auto; min-width: 0; }
 .home-section--blue { background: #2d6b83; color: #eef3e8; }
 .home-section--gold { background: #e8bc55; color: #17253c; }
 .home-section--gold .home-eyebrow span, .home-section--gold .home-action span { color: #b14f40; }
+
+
+@media (max-width: 768px) {
+
+    .navbar-desktop {
+    display: none;
+  }
+
+    .navbar-mobile {
+    display: block;
+  }
+
+    .home-nav__links { gap: .7rem; }
+
+    
+
+}
+
+
 
 @media (max-width: 768px) {
   .home-section__mission-grid {
@@ -170,6 +203,17 @@
     flex-direction: column;
     gap: 1.5rem;
   }
+
+  .home-section__events-inner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .home-section__events-heading { flex-basis: auto; }
+
+  .home-section__events-heading .home-copy { margin-bottom: 0; }
 
   .home-instagram-embed {
     max-width: 100%;
@@ -203,7 +247,7 @@
 
   .home-section.home-section--navy { 
     min-height: var(--section-height, 120vh);
-    padding-top: 2rem;
+    padding-top: 7rem;
     }
 
   .stroke-heading { -webkit-text-stroke-width: 1px; }

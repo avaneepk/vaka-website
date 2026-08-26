@@ -8,25 +8,27 @@
 
 .home-nav {
   align-items: center;
-  color: #f5f0df;
   margin: 2rem 0 0;
   box-sizing: border-box;
-  border-radius: 3rem;
-  backdrop-filter: blur(1.5px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 0px 3px 1.5px rgba(15, 15, 15, 0.3);
+  box-shadow: 0px 0px 3px 1.5px rgba(15, 15, 15, 0.1);
   display: flex;
   justify-content: center;
   gap: 0.45rem;
   width: 40rem;
   height: 3rem;
   min-width: 30rem;
-  max-width: 35rem;
+  max-width: 36rem;
   padding-bottom: 0.5px;
   padding-left: 0.2rem;
   padding-right: 0.2rem;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  mix-blend-mode: difference;
+  color: #ffffffb9;
   left: 50%;
   transform: translateX(-50%);
   top: 0;
@@ -41,10 +43,11 @@
   width: auto;
   height: 90%;
 }
-.home-nav__links a {
+.home-nav__links a,
+.home-nav__links button {
   color: inherit;
   font: 20px monospace;
-  opacity: .7;
+  opacity: 1;
   text-decoration: none;
   height: 100%;
   width: auto;
@@ -59,12 +62,20 @@
   transition: background-color 160ms ease, color 160ms ease, opacity 160ms ease;
 }
 .home-nav__links a:hover,
-.home-nav__links a:focus-visible {
+.home-nav__links a:focus-visible,
+.home-nav__links button:hover,
+.home-nav__links button:focus-visible {
   background-color: #fbfaf7;
   color: #032c66;
   opacity: 0.9;
 }
 
+.home-nav__links.home-tab {
+  margin-right: 0rem;
+}
+
+.home-nav__links.home-tab a {
+}
 
 
 @media (max-width: 768px) {

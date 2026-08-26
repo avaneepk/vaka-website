@@ -1,5 +1,16 @@
 import './Homepage.css'
 import LandingHero from './LandingHero.jsx';
+import AccordionGallery from './AccordionGallery.jsx';
+import fresherweeks from './assets/Fresher-weeks.jpg';
+
+
+const eventItems = [
+  { image: 'https://picsum.photos/id/1015/900/1200', label: 'Lake clean-up', link: '#join', alt: 'A rocky lakeside landscape' },
+  { image: 'https://picsum.photos/id/1018/900/1200', label: 'Open-water swim', link: '#join', alt: 'A mountain ridge above water' },
+  { image: fresherweeks, label: 'Fresher weeks', link: '#join', alt: 'A waterfall surrounded by greenery' },
+  { image: 'https://picsum.photos/id/1043/900/1200', label: 'Harbour gathering', link: '#join', alt: 'A harbour beside calm water' },
+  { image: 'https://picsum.photos/id/1044/900/1200', label: 'Evening by the lake', link: '#join', alt: 'A city skyline near the water' }
+];
 
 
 function Homepage() {
@@ -7,7 +18,7 @@ function Homepage() {
   return (
     <main className="homepage">
         <LandingHero />
-      <section className="home-section home-section--mist" id="mission">
+      <section className="home-section home-section--projects" id="projects">
         <div className="home-section__texture" aria-hidden="true" />
         <div className="home-section__mission-grid">
         
@@ -30,15 +41,15 @@ function Homepage() {
         </div>
       </section>
 
-      <section className="home-section home-section--coral" id="activities">
+      <section className="home-section home-section--events" id="activities">
         <div className="home-section__texture" aria-hidden="true" />
-        <div className="home-section_left">
-          <p className="home-eyebrow"><span>03</span>Get involved</p>
-          <h1><span>Good energy.</span><span>Real action.</span></h1>
-          <p className="home-copy">From shoreline cleanups to summer gatherings, there is always a way to take part.</p>
-          <a className="home-action" href="#community">See activities<span aria-hidden="true">-&gt;</span></a>
+        <div className="home-section__events-inner">
+          <div className="home-section__events-heading">
+            <h1><span>Make waves.</span></h1>
+            <p className="home-copy">Small actions, shared outdoors, become the events that bring our lake community together.</p>
+          </div>
+          <AccordionGallery items={eventItems} defaultIndex={2} height={390} expandRatio={0.5} />
         </div>
-        <p className="home-scroll-hint" aria-hidden="true">Scroll to explore</p>
       </section>
 
       <section className="home-section home-section--blue" id="community">
