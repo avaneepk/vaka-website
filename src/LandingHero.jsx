@@ -1,25 +1,27 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Homepage.css'
 import StrokeText from './StrokeText.jsx';
-import vakaLogo from './assets/vaka-logo.png';
+import vakaLogo from './assets/final-logo.png';
 import waves from './assets/waves (9).svg';
 import instagram from './assets/icons8-instagram.svg';
 import youtube from './assets/icons8-youtube.svg';
 import Navbar from './Navbar.jsx';
+import Globe, { preloadGlobeData } from "./components/originkit/ui/globe.jsx";
 
 
 function LandingHero() {
   const waveTrackRef = useRef(null);
+  const [showGlobe, setShowGlobe] = useState(false);
 
   useEffect(() => {
     const track = waveTrackRef.current;
+    preloadGlobeData();
     if (!track || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
 
     let animationFrame = null;
     let lastScrollY = window.scrollY;
-    const initialOffset = -window.innerWidth * 5;
-    track.dataset.offset = String(initialOffset);
-    track.style.setProperty('--wave-offset', `${initialOffset}px`);
+
+    const timer = setTimeout(() => setShowGlobe(true), 2000); // match StrokeText's duration
 
     const updateWave = () => {
       animationFrame = null;
@@ -28,7 +30,7 @@ function LandingHero() {
 
       // Scroll down moves the ribbon left; scrolling back reverses its direction.
       const currentOffset = Number(track.dataset.offset || 0);
-      const nextOffset = (currentOffset - scrollDelta * 0.35) % window.innerWidth;
+      const nextOffset = (currentOffset - scrollDelta * 0.80) % window.innerWidth;
       track.dataset.offset = String(nextOffset);
       track.style.setProperty('--wave-offset', `${nextOffset}px`);
     };
@@ -41,9 +43,12 @@ function LandingHero() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
+      clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
       if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
     };
+
+    
   }, []);
 
   return (
@@ -56,21 +61,21 @@ function LandingHero() {
             <div className="home-section__center">
                 
                 <div className="home-section_left">
-                <StrokeText
-                    />
-                <p className="home-copy">Vesijarven Academic Kippistely Association VAKA ry <br></br><br></br>
-                  Promoting and Preserving the culture and history for students of LUT & LAB higher education institutions in Lahti</p>
-                <div className="home-section__socials">
-                    <a href="https://www.instagram.com/vaka.ry/" target="_blank" rel="noopener noreferrer">
-                    <img src={instagram} alt="Instagram logo" />
-                    </a>
-                    <a href="https://www.youtube.com/@vaka_ry" target="_blank" rel="noopener noreferrer">
-                    <img src={youtube} alt="YouTube logo" />
-                    </a>
-                </div>
+                  <StrokeText />
+                  <p className="home-copy">Vesijarven Academic Kippistely Association VAKA ry <br></br><br></br>
+                    Promoting and Preserving the culture and history for students of LUT & LAB higher education institutions in Lahti</p>
+                  <div className="home-section__socials">
+                      <a href="https://www.instagram.com/vaka.ry/" target="_blank" rel="noopener noreferrer">
+                      <img src={instagram} alt="Instagram logo" />
+                      </a>
+                      <a href="https://www.youtube.com/@vaka_ry" target="_blank" rel="noopener noreferrer">
+                      <img src={youtube} alt="YouTube logo" />
+                      </a>
+                  </div>
                 </div>
                 <div className="logo-graphic">
-                <img src={vakaLogo} alt="Vaka ry logo" />
+                  {showGlobe && <Globe className="globe" />}
+                  <img className="logo" src={vakaLogo} alt="Vaka ry logo" />
                 </div>
             </div>
         </div>

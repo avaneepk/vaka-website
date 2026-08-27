@@ -35,7 +35,6 @@ const StrokeText = ({
   const rootRef = useRef(null);
   const strokeTextRef = useRef(null);
   const wipeRectRef = useRef(null);
-
   const [box, setBox] = useState(null);
 
   const rawId = useId();
