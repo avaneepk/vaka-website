@@ -21,7 +21,17 @@ function LandingHero() {
     let animationFrame = null;
     let lastScrollY = window.scrollY;
 
+    // Wrap the offset based on the width of ONE wave tile (the actual
+    // repeating unit), not window.innerWidth — these widths rarely match,
+    // which let the offset drift past the point where tiles line up.
+    let tileWidth = track.children[0]?.offsetWidth || window.innerWidth;
+
     const timer = setTimeout(() => setShowGlobe(true), 2000); // match StrokeText's duration
+
+    const updateTileWidth = () => {
+      tileWidth = track.children[0]?.offsetWidth || window.innerWidth;
+    };
+    window.addEventListener('resize', updateTileWidth);
 
     const updateWave = () => {
       animationFrame = null;
@@ -30,7 +40,16 @@ function LandingHero() {
 
       // Scroll down moves the ribbon left; scrolling back reverses its direction.
       const currentOffset = Number(track.dataset.offset || 0);
-      const nextOffset = (currentOffset - scrollDelta * 0.80) % window.innerWidth;
+      let nextOffset = (currentOffset - scrollDelta * 0.80) % tileWidth;
+
+      // FIXED: keep the offset in the range (-tileWidth, 0], NOT [0, tileWidth).
+      // The track moves left via negative translateX, so the "reset point"
+      // for a clean loop is 0 (start) down to -tileWidth (one full tile
+      // scrolled past) — not a positive range. My previous fix flipped this
+      // sign, which is why the strip jumped to start from the right instead
+      // of the left.
+      if (nextOffset > 0) nextOffset -= tileWidth;
+
       track.dataset.offset = String(nextOffset);
       track.style.setProperty('--wave-offset', `${nextOffset}px`);
     };
@@ -45,10 +64,9 @@ function LandingHero() {
     return () => {
       clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', updateTileWidth);
       if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
     };
-
-    
   }, []);
 
   return (

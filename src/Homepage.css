@@ -7,6 +7,8 @@
 
 .home-section.home-section--navy {
     padding-top: 5.5rem;
+    color: #eef3e8;
+    background: #0761df;
  }
 
 
@@ -14,7 +16,7 @@
   box-sizing: border-box;
   display: column;
   /* Change this value to make every full-page section shorter or taller. */
-  min-height: var(--section-height, 100vh);
+  min-height: var(--section-height, 105vh);
   overflow: hidden;
   padding: 8rem 5px 0px 5px;
   position: relative;
@@ -165,9 +167,17 @@
   z-index: 0;
 
 }
-.home-section--projects { background: #efeff1; color: #19352f; }
+.home-section--projects { 
+  background: #efeff1; 
+  color: #19352f; 
+}
 .home-section--projects .stroke-heading { -webkit-text-stroke-color: #19352f; }
-.home-section--events { background: #d6d6d9; color: #19352f; }
+.home-section--events { 
+  background: #d6d6d9; 
+  color: #19352f; 
+  min-height: var(--section-height, 120vh);
+}
+
 .home-section--events .home-section__texture { opacity: .45; }
 .home-section__events-inner {
   align-items: center;
@@ -183,8 +193,14 @@
 .home-section__events-heading .home-copy { margin-left: 0; margin-right: 0; }
 .home-section__events-inner .accordion-gallery { flex: 1 1 auto; min-width: 0; }
 .home-section--blue { background: #2d6b83; color: #eef3e8; }
-.home-section--gold { background: #e8bc55; color: #17253c; }
-.home-section--gold .home-eyebrow span, .home-section--gold .home-action span { color: #b14f40; }
+
+.contact-us { 
+  background: #efeff1; 
+  color: #19352f;  
+}
+
+.contact-us .home-eyebrow span, .contact-us .home-action span { color: #b14f40; }
+
 
 
 @media (max-width: 768px) {

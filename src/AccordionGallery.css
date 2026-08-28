@@ -11,6 +11,7 @@
   width: 100%;
   max-width: 100%;
   perspective: 1400px;
+  min-height: 500px;
   perspective-origin: 50% 50%;
 }
 
