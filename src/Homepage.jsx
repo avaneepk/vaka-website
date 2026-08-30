@@ -1,6 +1,5 @@
 import './Homepage.css'
 import LandingHero from './LandingHero.jsx';
-import AccordionGallery from './AccordionGallery.jsx';
 import  HoverExpand  from "./components/hover-expand.jsx";
 import bgimage from './assets/bg-image.jpg';
 
@@ -8,23 +7,42 @@ const description = "Lorem Ipsum is simply dummy text of the printing and typese
 
 const items = [
   {
-    label: "Kyoto",
-    sublabel: "Japan",
+    label: "Kyykkä Events",
+    sublabel: "Training, tournaments, and events",
     description: description,
     image: bgimage,
   },
   {
-    label: "Lisbon",
-    sublabel: "Portugal",
+    label: "Vaka Podcast",
+    sublabel: "Discussions and interviews",
     description: "Sunlit hills and crumbling azulejo facades",
     image: bgimage,
   },
   {
-    label: "Marrakech",
-    sublabel: "Morocco",
+    label: "Sitz Toastmasters",
+    sublabel: "Training and support",
     description: "A labyrinth of souks washed in saffron light",
     image: bgimage,
   },
+  {
+    label: "Student Museum",
+    sublabel: "Maintenance and operations",
+    description: "A labyrinth of souks washed in saffron light",
+    image: bgimage,
+  },
+  {
+    label: "Wappu and Fresher Events",
+    sublabel: "Cultural events and activities",
+    description: "A labyrinth of souks washed in saffron light",
+    image: bgimage,
+  },
+  {
+    label: "Wappu Magazine",
+    sublabel: "",
+    description: "A labyrinth of souks washed in saffron light",
+    image: bgimage,
+  },
+
 ];
 
 
@@ -35,19 +53,11 @@ function Homepage() {
         <LandingHero />
       <section className="home-section home-section--projects" id="projects">
         <div className="home-section__texture" aria-hidden="true" />
+        <div className="project-header mb-10">
+          <h1><span>Projects</span></h1>
+        </div>
         <div className="home-section__mission-grid">
         <HoverExpand items={items} />
-        </div>
-      </section>
-
-      <section className="home-section home-section--events" id="activities">
-        <div className="home-section__texture" aria-hidden="true" />
-        <div className="home-section__events-inner">
-          <div className="home-section__events-heading">
-            <h1><span>Make waves.</span></h1>
-            <p className="home-copy">Small actions, shared outdoors, become the events that bring our lake community together.</p>
-          </div>
-          <AccordionGallery  defaultIndex={2} height={390} expandRatio={0.5} />
         </div>
       </section>
 
@@ -64,11 +74,15 @@ function Homepage() {
 
       <section className="home-section contact-us" id="join">
         <div className="contact-us-header">
-          <h2>Get in Touch</h2>
-          <p>Have questions or want to learn more about Vaka ry? Reach out to us!</p>
+          <h1>Contact Us</h1>
         </div>
-        <div className="contact-us-content">
+        <div className="contact-us-content flex flex-column gap-6">
           <div className="contact-us-content-left">
+            <p>For any queries related to events, 
+              membership, marketing, corporate relations, or general inquiries, 
+              please contact us at <a href="mailto:board@vakary.fi" className="email-link">board@vakary.fi</a>.
+              <br />
+              We'll get back to you as soon as possible!</p>
             
           </div>
           <div className="contact-us-content-right">

@@ -8,15 +8,38 @@
 .home-section.home-section--navy {
     padding-top: 5.5rem;
     color: #eef3e8;
-    background: #0761df;
- }
+    /* CHANGED: removed the linear-gradient background — Grainient now
+       provides the background instead. */
+    min-height: var(--section-height, 105vh);
+    /* ADDED: needed so Grainient's absolute positioning is contained to
+       this section rather than escaping to a further-up ancestor. Your
+       .home-section rule already sets position: relative, so this line
+       is only needed if that base rule ever changes — safe to include
+       either way for clarity. */
+    position: relative;
+}
+
+/* ADDED: fills the section completely, ignoring padding (see explanation
+   above), and sits behind all other content via z-index: 0. */
+.home-section--navy__grainient {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Make sure the Grainient component itself stretches to fill its wrapper */
+.home-section--navy__grainient > * {
+  width: 100%;
+  height: 100%;
+}
 
 
 .home-section {
   box-sizing: border-box;
   display: column;
-  /* Change this value to make every full-page section shorter or taller. */
-  min-height: var(--section-height, 105vh);
   overflow: hidden;
   padding: 8rem 5px 0px 5px;
   position: relative;
@@ -80,43 +103,6 @@
   z-index: 1;
 }
 
-.home-instagram-embed {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(25, 53, 47, 0.2);
-  border-radius: 1rem;
-  box-shadow: 0 12px 28px rgba(10, 22, 30, 0.15);
-  width: 70%;
-  max-width: 80%;
-  min-width: 24rem;
-  padding: 1rem;
-}
-
-.home-instagram-embed__frame {
-  background: #fff;
-  border: 0;
-  border-radius: 0.75rem;
-  display: block;
-  height: 29rem;
-  width: 100%;
-}
-
-.home-instagram-embed__link {
-  color: #19352f;
-  display: inline-block;
-  font: 700 0.78rem/1 monospace;
-  letter-spacing: 0.06em;
-  margin-top: 0.75rem;
-  opacity: 0.8;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.home-instagram-embed__link:hover,
-.home-instagram-embed__link:focus-visible {
-  color: #0a4c9a;
-  opacity: 1;
-}
-
 .home-section__socials {
   margin-left: 2.5rem;
   display: flex;
@@ -129,6 +115,7 @@
   aspect-ratio: 1;
   position: relative;
   width: min(50vw, 35rem);
+  
 }
 
 
@@ -169,9 +156,11 @@
 }
 .home-section--projects { 
   background: #efeff1; 
-  color: #19352f; 
+  color: #19352f;
+  min-height: var(--section-height, 50vh);
+  padding: 3rem 0 5rem 0;
 }
-.home-section--projects .stroke-heading { -webkit-text-stroke-color: #19352f; }
+
 .home-section--events { 
   background: #d6d6d9; 
   color: #19352f; 
@@ -181,7 +170,8 @@
 .home-section--events .home-section__texture { opacity: .45; }
 .home-section__events-inner {
   align-items: center;
-  display: column;
+  display: flex;
+  flex-direction: column;
   gap: clamp(2rem, 6vw, 7rem);
   margin: 0 auto;
   max-width: 90rem;
@@ -196,36 +186,96 @@
 
 .contact-us { 
   background: #efeff1; 
-  color: #19352f;  
-}
-
-.contact-us .home-eyebrow span, .contact-us .home-action span { color: #b14f40; }
-
-
-
-@media (max-width: 768px) {
-
-    .navbar-desktop {
-    display: none;
-  }
-
-    .navbar-mobile {
-    display: block;
-  }
-
-    .home-nav__links { gap: .7rem; }
-
-    
-
+  color: #19352f; 
+  padding: 5rem 0 5rem 0; 
 }
 
 
+.contact-us-content {
+  display: flex;
+  flex-direction: row;
+} 
 
-@media (max-width: 768px) {
+.contact-us-content-left {
+  max-width: 50%;
+  flex: 1;
+  padding: 5rem 4rem 0 3rem;
+}
+
+.contact-us-content-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60%;
+}
+
+
+  .email-link { color: #b14f40; }
+  
+  .email-link:hover, .email-link:focus-visible { 
+    color: #7a2f27; 
+    background-color: #d2dbef;
+    font-weight: 700; }
+
+  .home-instagram-embed {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(25, 53, 47, 0.2);
+  border-radius: 1rem;
+  box-shadow: 0 12px 28px rgba(10, 22, 30, 0.15);
+  width: 70%;
+  max-width: 80%;
+  min-width: 24rem;
+  padding: 1rem;
+  margin: 2rem;
+
+}
+
+.home-instagram-embed__frame {
+  background: #fff;
+  border: 0;
+  border-radius: 0.75rem;
+  display: block;
+  height: 29rem;
+  width: 100%;
+}
+
+.home-instagram-embed__link {
+  color: #19352f;
+  display: inline-block;
+  font: 700 0.78rem/1 monospace;
+  letter-spacing: 0.06em;
+  margin-top: 0.75rem;
+  opacity: 0.8;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.home-instagram-embed__link:hover,
+.home-instagram-embed__link:focus-visible {
+  color: #0a4c9a;
+  opacity: 1;
+}  
+
+
+
+
+@media (max-width: 600px) {
   .home-section__mission-grid {
     align-items: center;
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  .home-copy { 
+    margin: 0 1rem 2rem 1rem; 
+    max-width: 100%; 
+    padding-left: 1rem; 
+    padding-right: 1rem; }
+
+  .home-section--projects {
+    min-height: var(--section-height, 50vh);
+    padding: 3rem 0 5rem 0;
   }
 
   .home-section__events-inner {
@@ -244,20 +294,14 @@
     width: min(100%, 24rem);
   }
 
-  
   .home-section__center { flex-direction: column; gap: 0rem; }
-  .home-section {
-    align-items: flex-end;
-    /* Mobile needs extra bottom space for the scroll hint and navigation. */
-    padding: 6rem 0rem 0rem 0rem;
-  }
-
+  
 
   .logo-graphic {
     /* Keep the logo beside the content on desktop, but place it above on mobile. */
     margin: 0;
     order: -1;
-    width: min(80vw, 27rem);
+    width: min(60vw, 20rem);
   }
 
   .home-section_left {
@@ -266,12 +310,11 @@
     top: 0;
   }
 
-  .home-copy { margin: 0 1rem 2rem 1rem; max-width: 100%; }
   .home-action { margin-left: 1rem; }
 
   .home-section.home-section--navy { 
     min-height: var(--section-height, 120vh);
-    padding-top: 7rem;
+    padding-top: 4rem;
     }
 
   .stroke-heading { -webkit-text-stroke-width: 1px; }

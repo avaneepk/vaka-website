@@ -11,9 +11,6 @@ function Navbar() {
                 <a href="#projects">Projects</a>
                 </div>
                 <div className="home-nav__links">
-                <button href="#events">Events</button>
-                </div>
-                <div className="home-nav__links">
                 <a href="#mission">Members</a>
                 </div>
                 <div className="home-nav__links">
