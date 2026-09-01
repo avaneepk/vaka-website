@@ -72,8 +72,8 @@ function LandingHero() {
 
   return (
   <main className="homepage">
-    <Navbar />
-    <section className="home-section home-section--navy" id="about">
+      <Navbar />    
+    <section className="hero-landing" id="about">
       {/* CHANGED: Grainient now absolutely fills the section via CSS
           (see .home-section--navy__grainient below) instead of sitting
           inline in the normal document flow. Wrapped it in a div with
@@ -82,7 +82,7 @@ function LandingHero() {
       <div className="home-section--navy__grainient" aria-hidden="true">
         <Grainient
           color1="#050c19"
-          color2="#2575f8"
+          color2="#1c63d5"
           color3="#050a14"
           timeSpeed={1.05}
           colorBalance={0}
@@ -110,13 +110,15 @@ function LandingHero() {
         <div className="home-section__center">
           <div className="home-section_left">
             <StrokeText />
-            <p className="home-copy">
+            {/* CHANGED: added "home-fade-in" */}
+            <p className="home-copy home-fade-in">
               Vesijarven Academic Kippistely Association VAKA ry <br />
               <br />
               Promoting and Preserving the culture and history for students
               of LUT & LAB higher education institutions in Lahti
             </p>
-            <div className="home-section__socials">
+            {/* CHANGED: added "home-fade-in" */}
+            <div className="home-section__socials home-fade-in">
               <a href="https://www.instagram.com/vaka.ry/" target="_blank" rel="noopener noreferrer">
                 <img src={instagram} alt="Instagram logo" />
               </a>
@@ -125,7 +127,9 @@ function LandingHero() {
               </a>
             </div>
           </div>
-          <div className="logo-graphic">
+          {/* CHANGED: added "home-fade-in", removed the old broken inline animation
+              that lived in the .logo-graphic CSS rule */}
+          <div className="logo-graphic home-fade-in">
             {showGlobe && <Globe className="globe" />}
             <img className="logo" src={vakaLogo} alt="Vaka ry logo" />
           </div>

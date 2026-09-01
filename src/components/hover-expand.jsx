@@ -16,6 +16,10 @@ function HoverExpand({
 }) {
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
 
+  const handleCardToggle = (index) => {
+    setHoveredIndex((current) => (current === index ? null : index));
+  };
+
   return (
     <div className={cn("flex flex-col w-full", className)}>
       <div className="w-full border-t border-current opacity-15" />
@@ -41,8 +45,10 @@ function HoverExpand({
                 },
                 opacity: { duration: 0.22, ease: "easeOut" },
               }}
+              onClick={() => handleCardToggle(i)}
               onHoverStart={() => setHoveredIndex(i)}
               onHoverEnd={() => setHoveredIndex(null)}
+              aria-expanded={isHovered}
             >
               <motion.div
                 className="absolute inset-0 w-full h-full"
@@ -56,6 +62,7 @@ function HoverExpand({
                   scale: { duration: 0.55, ease: [0.23, 1, 0.32, 1] },
                 }}
               >
+
                 <img
                   src={item.image}
                   alt={item.imageAlt ?? ""}
@@ -63,7 +70,8 @@ function HoverExpand({
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-black/10" />
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.10),transparent_38%),linear-gradient(to_top,_rgba(0,0,0,0.75),rgba(0,0,0,0.18)_42%,rgba(0,0,0,0.10))]" />
               </motion.div>
 
               {/* CHANGED: switched from "items-end" (bottom-aligned) to
@@ -76,7 +84,7 @@ function HoverExpand({
                 <div className="flex w-full flex-col gap-2">
                   {/* Top row: number + label + sublabel */}
                   <div className="flex w-full items-baseline justify-between gap-4">
-                    <div className="flex items-baseline gap-3 min-w-0">
+                    <div className="flex items-baseline gap-3 min-w-0 px-6">
                       <motion.span
                         className="text-xs tabular-nums shrink-0 opacity-40"
                         animate={{
@@ -124,7 +132,7 @@ function HoverExpand({
                       stretching edge-to-edge. */}
                   {item.description && (
                     <motion.p
-                      className="text-sm text-white/70 max-w-2xl whitespace-normal leading-relaxed"
+                      className="text-sm text-white/70 max-w-2xl whitespace-normal leading-relaxed text-shadow-lg"
                       initial={{ opacity: 0, y: -8 }}
                       animate={{
                         opacity: isHovered ? 1 : 0,
@@ -138,6 +146,35 @@ function HoverExpand({
                     >
                       {item.description}
                     </motion.p>
+                  )}
+
+                  {(item.href || item.onLearnMore || item.linkText) && (
+                    <motion.a
+                      href={item.href ?? "#"}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        if (!item.href) {
+                          event.preventDefault();
+                        }
+                        if (item.onLearnMore) {
+                          item.onLearnMore();
+                        }
+                      }}
+                      className="mt-1 inline-flex items-center gap-2 self-start text-sm font-medium text-white transition-colors hover:text-white/80"
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{
+                        opacity: isHovered ? 1 : 0,
+                        y: isHovered ? 0 : -8,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        delay: isHovered ? 0.18 : 0,
+                        ease: [0.23, 1, 0.32, 1],
+                      }}
+                    >
+                      {item.linkText ?? "Learn more"}
+                      <span aria-hidden="true">→</span>
+                    </motion.a>
                   )}
                 </div>
               </div>

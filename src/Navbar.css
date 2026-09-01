@@ -33,6 +33,17 @@
   transform: translateX(-50%);
   top: 0;
   z-index: 5;
+  opacity: 0;
+  animation: fade-in 1s ease-out 2.5s forwards;
+}
+
+/* ADDED: respect reduced-motion users — show content immediately instead
+   of making them wait 5s with no animation at all. */
+@media (prefers-reduced-motion: reduce) {
+  .home-nav {
+    animation: none;
+    opacity: 1;
+  }
 }
 
 .home-nav__links {
