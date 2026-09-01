@@ -38,7 +38,7 @@ function AccordionItem({ item, isOpen, onToggle, itemId, panelId }) {
         onClick={onToggle}
         className="flex w-full cursor-pointer select-none items-center justify-between gap-4 px-7 py-5 text-left"
       >
-        <h2 className="text-[clamp(1.2rem,1.6vw,1.3rem)] font-medium tracking-tight leading-snug">
+        <h2 className="font-display text-[clamp(1.2rem,1.6vw,1.3rem)] font-medium tracking-tight leading-snug">
           {item.question}
         </h2>
 
@@ -112,7 +112,7 @@ function AccordionItem({ item, isOpen, onToggle, itemId, panelId }) {
           }}
           className="px-7 pb-7"
         >
-          <p className="text-lg leading-8 font-base tracking-normal text-foreground/75">
+          <p className="font-body text-lg leading-8 tracking-normal text-foreground/75">
             {item.answer}
           </p>
         </motion.div>

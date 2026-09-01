@@ -1,106 +1,115 @@
-.navbar-desktop {
-  display: block;
-}
-
-.navbar-mobile {
-  display: none;
-}
-
-.home-nav {
-  align-items: center;
-  margin: 2rem 0 0;
-  box-sizing: border-box;
-  border-radius: 1rem;
-  backdrop-filter: blur(2px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0px 0px 3px 1.5px rgba(15, 15, 15, 0.1);
-  display: flex;
-  justify-content: center;
-  gap: 0.45rem;
-  width: 35rem;
-  height: 3rem;
-  min-width: 20rem;
-  max-width: 30rem;
-  padding-bottom: 0.5px;
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
+.navbar-shell {
   position: fixed;
-  top: 0;
-  mix-blend-mode: difference;
-  color: #ffffffb9;
+  top: 1.2rem;
   left: 50%;
   transform: translateX(-50%);
-  top: 0;
-  z-index: 5;
-  opacity: 0;
-  animation: fade-in 1s ease-out 2.5s forwards;
+  z-index: 20;
 }
 
-/* ADDED: respect reduced-motion users — show content immediately instead
-   of making them wait 5s with no animation at all. */
-@media (prefers-reduced-motion: reduce) {
-  .home-nav {
-    animation: none;
-    opacity: 1;
-  }
+.spotlight-nav {
+  --spotlight-color: rgba(244, 229, 65, 0.308);
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 500px;
+  padding: 0.50rem 0.72rem;;
+  border-radius: 25px;
+  border: 1px solid rgba(248, 227, 105, 0.43);
+  background: rgb(1, 12, 64);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 2px 10px rgba(49, 53, 60, 0.5);
+  overflow: hidden;
 }
 
-.home-nav__links {
+.spotlight-nav--dark {
+  --spotlight-color: rgba(14, 13, 13, 0.642);
+  --ambience-color: rgba(255, 255, 255, 1);
+}
+
+.spotlight-nav__list {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.spotlight-nav__item {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 auto;
-  width: auto;
-  height: 90%;
 }
-.home-nav__links a,
-.home-nav__links button {
-  color: inherit;
-  font: 20px monospace;
-  opacity: 1;
+
+.spotlight-nav__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  border-radius: 25px;
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
   text-decoration: none;
+  color: rgb(251, 251, 249);
+  transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.spotlight-nav__link:hover,
+.spotlight-nav__link:focus-visible {
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.spotlight-nav__spotlight,
+.spotlight-nav__ambience {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.spotlight-nav__spotlight {
+  bottom: 100;
+  left: 0;
   height: 100%;
-  width: auto;
-  min-width: fit-content;
-  padding: 0 0.95rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-  border-radius: 10px;
-  transition: background-color 160ms ease, color 160ms ease, opacity 160ms ease;
-}
-.home-nav__links a:hover,
-.home-nav__links a:focus-visible,
-.home-nav__links button:hover,
-.home-nav__links button:focus-visible {
-  background-color: #fbfaf7;
-  color: #032c66;
-  opacity: 0.9;
+  width: 100%;
 }
 
-.home-nav__links.home-tab {
-  margin-right: 0rem;
+.spotlight-nav__ambience {
+  left: 0;
+  top: auto;
+  bottom: 10px;
+  width: 100%;
+  height: 500px;
 }
 
-.home-nav__links.home-tab a {
-}
-
-
-@media (max-width: 768px) {
-
-    .navbar-desktop {
-    display: none;
+@media (max-width: 640px) {
+  .navbar-shell {
+    top: 0.75rem;
+    width: calc(100% - 1.5rem);
   }
 
-    .navbar-mobile {
-    display: block;
+  .spotlight-nav {
+    width: 100%;
+    justify-content: center;
   }
 
-    .home-nav__links { gap: .7rem; }
+  .spotlight-nav__list {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.15rem;
+  }
 
-    
-
+  .spotlight-nav__link {
+    padding: 0.8rem 0.9rem;
+    font-size: 0.8rem;
+  }
 }

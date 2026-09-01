@@ -2,6 +2,7 @@
   display: block;
   font-family: var(--stroke-text-font, Arial, sans-serif);
   width: 100%;
+  color:  #ffffff;
   line-height: 0;
 }
 

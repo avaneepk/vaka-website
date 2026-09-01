@@ -1,52 +1,62 @@
 import './Homepage.css'
 import { useState, useRef } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import LandingHero from './LandingHero.jsx';
 import  HoverExpand  from "./components/hover-expand.jsx";
-import bgimage from './assets/bg-image.jpg';
+import eventBg from './assets/wappu-bg.jpg';
+import kyykkaBg from './assets/kyykka-bg.jpg';
+import podcastBg from './assets/podcast-bg.jpg';
+import sitzBg from './assets/sitz-bg.jpg';
+import magazineBg from './assets/magazine-bg.jpg';
+import museumBg from './assets/museum-bg.jpg';
 import { MotionAccordion } from './components/motion-faqs-accordion.jsx';
-import SlideFillButton from './components/SlideFillButton.jsx';
-
-const description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.";
+import MemberSection from './MemberSection.jsx';
 
 const items = [
   {
     label: "Kyykkä Events",
     sublabel: "Training, tournaments, and events",
-    description: description,
-    linkText: "Learn more",
-    href: "/projects/kyykka-events",
-    image: bgimage,
+    description: "Kyykkä is a traditional Finnish sport that involves throwing wooden bats (Karttu) at a set of skittles (kyykkä).The objective is to knock down as many skittles as possible while adhering to specific rules and techniques. Vaka organizes kyykkä events, including training sessions, tournaments, and other related activities, to promote and preserve this unique Finnish sport amongst the diverse community of LUT & LAB students in Lahti. Vaka also sends a team to compete in the kyykkä championships hosted by other cities. Send us a message or email for collaborations and invitations!",
+    linkText: "More information about Kyykkä",
+    href: "https://en.wikipedia.org/wiki/Finnish_skittles",
+    image: kyykkaBg,
   },
   {
     label: "Vaka Podcast",
     sublabel: "Discussions and interviews",
-    description: "Sunlit hills and crumbling azulejo facades",
-    image: bgimage,
+    description: "Discussions and interviews with students, alumni, and professionals, sharing their experiences and insights about the student culture and life.",
+    linkText: "Podcast link",
+    href: "https://www.youtube.com/@Vaka-ry",
+    image: podcastBg,
   },
   {
     label: "Sitz Toastmasters",
     sublabel: "Training and support",
-    description: "A labyrinth of souks washed in saffron light",
-    image: bgimage,
+    description: "Sitz, or Sitsit, is an integral part of the Finnish student culture. Vaka ry provides training for sitz toastmasters, as well as providing trained toastmaster with songbooks customized for the theme as services for any association planning to organize a sitz party. Feel free to reach out to us for collaborations or training requests!",
+    linkText: "More information about Sitz",
+    href: "https://en.wikipedia.org/wiki/Sitsit",
+    image: sitzBg,
   },
   {
     label: "Student Museum",
     sublabel: "Maintenance and operations",
-    description: "A labyrinth of souks washed in saffron light",
-    image: bgimage,
+    description: "How can we preserve the history and culture of student life in Lahti? Vaka ry maintains a student museum that showcases the history and traditions of student life in Lahti, as well as in other parts of Finland.",
+    linkText: "More information about the Student Museum coming soon!",
+    href: "#",
+    image: museumBg,
   },
   {
     label: "Wappu and Fresher Events",
     sublabel: "Cultural events and activities",
-    description: "A labyrinth of souks washed in saffron light",
-    image: bgimage,
+    description: "Vaka ry organizes various events and activities for students, including Wappu celebrations, fresher events, and other cultural activities. These events provide opportunities for students to socialize, network, and engage with the student community in Lahti.",
+    linkText: "Send us a message for collaborations and invitations!",
+    href: "mailto:projects@vakary.fi",
+    image: eventBg,
   },
   {
     label: "Wappu Magazine",
-    sublabel: "",
-    description: "A labyrinth of souks washed in saffron light",
-    image: bgimage,
+    sublabel: "Magazine and publication",
+    description: "More information about the Wappu Magazine coming soon!",
+    image: magazineBg,
   },
 
 ];
@@ -108,6 +118,7 @@ function Homepage() {
   return (
     <main className="homepage">
         <LandingHero />
+
       <section className="home-section home-section--projects" id="projects">
         <div className="home-section__texture" aria-hidden="true" />
         <div className="project-header mb-10">
@@ -118,63 +129,10 @@ function Homepage() {
         </div>
       </section>
 
-      <section className="member-section" id="members">
-        <div className="member-section-header px-4">
-          <h1>Members</h1>
-        </div>
-        <div className="member-section__inner">
-          <p> We're always looking for new members to join our association!
-          <br></br> <br></br> 
-           Ideally, the member should be at least in the 2nd year of their studies, with some strong experience at their student guilds/union/associations from board work. 
-           We value experience and achievements the most, irrespective of the board position, as well as the knowledge about the student culture and traditions.
-          <br></br><br></br>
-          If this describes you, please fill out the registration form by clicking the button below. 
-          </p> 
-          <div className="button-corner "> 
-            <div className="form-button">
-              <SlideFillButton
-                label={showForm ? 'Hide Registration Form' : 'Registration Form'}
-                onClick={handleFormToggle}
-                width="100%"
-                height="100%"
-                rounded={30}
-                padding={0}
-                font={{
-                  fontFamily: "Inter",
-                  fontWeight: 500,
-                  fontSize: 18,
-                  lineHeight: "0.2em",
-                  textAlign: "left",
-                }}
-                water={{ color: '#0E87CC', direction: 'up', textColor: '#FFFFFF', waveSpeed: 50, defaultFill: 0 }}
-                colors={{ fill: '#f2f5f6', textColor: '#141212' }}
-                border={{ borderWidth: 2, borderStyle: 'solid', borderColor: '#00000030' }}
-
-                // box-shadow — pass any valid CSS box-shadow string
-                boxShadow="0 4px 12px rgba(0, 0, 0, 0.15)"
-              />
-            </div>
-          </div>
-
-          <CSSTransition
-            in={showForm}
-            timeout={300}
-            classNames="registration-form" 
-            unmountOnExit
-            nodeRef={nodeRef} >
-            <div className="registration-form" ref={nodeRef} >
-              <iframe
-                src="https://docs.google.com/forms/d/e/1FAIpQLScK0oUf5fOAoolFihr802107wgenbFER7D-bCTf-FCNwVo-Tw/viewform?embedded=true"
-                style={{ width: "100%", height: "100%", border: "none" }}
-                title="VAKA ry registration form"
-                className="registration-form__iframe"
-              />
-            </div>
-          </CSSTransition>
-        </div>
-      </section>
+      <MemberSection />
 
       <section className="home-section contact-us" id="join">
+        <div className="home-section__texture" aria-hidden="true" />
         <div className="contact-us-header px-4">
           <h1>Contact Us</h1>
         </div>

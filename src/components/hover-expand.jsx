@@ -71,7 +71,7 @@ function HoverExpand({
                   decoding="async"
                 />
                 <div className="absolute inset-0 bg-black/40" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.10),transparent_38%),linear-gradient(to_top,_rgba(0,0,0,0.75),rgba(0,0,0,0.18)_42%,rgba(0,0,0,0.10))]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.10),transparent_38%),linear-gradient(to_top,_rgba(0,0,80,0.75),rgba(0,0,30,0.40)_100%,rgba(0,0,99,1))]" />
               </motion.div>
 
               {/* CHANGED: switched from "items-end" (bottom-aligned) to
@@ -86,10 +86,10 @@ function HoverExpand({
                   <div className="flex w-full items-baseline justify-between gap-4">
                     <div className="flex items-baseline gap-3 min-w-0 px-6">
                       <motion.span
-                        className="text-xs tabular-nums shrink-0 opacity-40"
+                        className="font-display text-lg tabular-nums shrink-0 opacity-70"
                         animate={{
-                          color: isHovered ? "#ffffff" : "currentColor",
-                          opacity: isHovered ? 0.5 : 0.4,
+                          color: isHovered ? "#f8f3ea" : "#f4d35e",
+                          opacity: isHovered ? 0.9 : 0.65,
                         }}
                         transition={{ duration: 0.2 }}
                       >
@@ -97,10 +97,10 @@ function HoverExpand({
                       </motion.span>
 
                       <motion.span
-                        className="font-semibold tracking-tight truncate"
-                        style={{ fontSize: "clamp(1.1rem, 2.2vw, 1.5rem)" }}
+                        className="font-display font-medium tracking-tight truncate"
+                        style={{ fontSize: isHovered ? "clamp(1.1rem, 2.2vw, 2rem)" : "clamp(1.1rem, 2.2vw, 1.5rem)" }}
                         animate={{
-                          color: isHovered ? "#ffffff" : "currentColor",
+                          color: isHovered ? "#f8f3ea" : "#0d3b66",
                         }}
                         transition={{ duration: 0.2 }}
                       >
@@ -110,12 +110,10 @@ function HoverExpand({
 
                     {item.sublabel && (
                       <motion.span
-                        className="text-xs tracking-widest uppercase shrink-0"
+                        className="font-display text-xs tracking-[0.14em] uppercase shrink-0"
                         animate={{
-                          color: isHovered
-                            ? "rgba(255,255,255,0.55)"
-                            : "currentColor",
-                          opacity: isHovered ? 1 : 0.45,
+                          color: isHovered ? "#f8f3ea" : "#0d3b66",
+                          opacity: isHovered ? 1 : 0.7,
                         }}
                         transition={{ duration: 0.2 }}
                       >
@@ -132,7 +130,8 @@ function HoverExpand({
                       stretching edge-to-edge. */}
                   {item.description && (
                     <motion.p
-                      className="text-sm text-white/70 max-w-2xl whitespace-normal leading-relaxed text-shadow-lg"
+                      className="font-body px-6 py-2 max-w-3xl whitespace-normal leading-normal text-shadow-2xl text-[0.95rem] md:text-[1rem]"
+                      style={{ color: "#f8f3ea" }}
                       initial={{ opacity: 0, y: -8 }}
                       animate={{
                         opacity: isHovered ? 1 : 0,
@@ -160,7 +159,8 @@ function HoverExpand({
                           item.onLearnMore();
                         }
                       }}
-                      className="mt-1 inline-flex items-center gap-2 self-start text-sm font-medium text-white transition-colors hover:text-white/80"
+                      className="mt-1 px-6 inline-flex items-center gap-2 self-start text-m font-medium transition-colors"
+                      style={{ color: "#f4d35e" }}
                       initial={{ opacity: 0, y: -8 }}
                       animate={{
                         opacity: isHovered ? 1 : 0,

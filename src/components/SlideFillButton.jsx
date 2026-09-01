@@ -83,7 +83,7 @@ function __OriginkitBase_SlideFillButton(props) {
     rounded = 32,
     fill: fillProp,
     textColor: textColorProp,
-    colors = { fill: "#D9DADB", textColor: "#000000" },
+    colors = { fill: "#f4d35e", textColor: "#0d3b66" },
     addIcon = false,
     icon = {
       side: "left",
@@ -122,8 +122,8 @@ function __OriginkitBase_SlideFillButton(props) {
     ...rest
   } = props;
 
-  const fill = colors?.fill ?? fillProp ?? "#D9DADB";
-  const textColor = colors?.textColor ?? textColorProp ?? "#000000";
+  const fill = colors?.fill ?? fillProp ?? "#f4d35e";
+  const textColor = colors?.textColor ?? textColorProp ?? "#0d3b66";
   const {
     color: waterColor = colors?.hoverFill ?? "#0E87CC",
     textColor: waterTextColor = colors?.hoverTextColor ?? "#FFFFFF",
@@ -131,6 +131,8 @@ function __OriginkitBase_SlideFillButton(props) {
     defaultFill = defaultFillLegacy ?? 0,
     waveSpeed: waveSpeedPctProp,
   } = water;
+
+  const idleTextColor = "#0d3b66";
 
   const waveSpeedPct = waveSpeedPctProp ?? waveSpeedLegacy ?? 50;
   const waveSpeed =
@@ -248,7 +250,7 @@ function __OriginkitBase_SlideFillButton(props) {
     if (labelRef.current)
       animate(
         labelRef.current,
-        { color: submerged ? waterTextColor : textColor },
+        { color: submerged ? waterTextColor : idleTextColor },
         { duration: 0 }
       );
     if (iconRef.current)
@@ -261,7 +263,7 @@ function __OriginkitBase_SlideFillButton(props) {
     animate,
     restOffset.x,
     restOffset.y,
-    textColor,
+    idleTextColor,
     waterTextColor,
     iconColor,
     iconHoverColor,
@@ -303,7 +305,7 @@ function __OriginkitBase_SlideFillButton(props) {
     if (labelRef.current) {
       animate(
         labelRef.current,
-        { color: submerged ? waterTextColor : textColor },
+        { color: submerged ? waterTextColor : idleTextColor },
         transition
       );
     }
@@ -319,7 +321,7 @@ function __OriginkitBase_SlideFillButton(props) {
     transition,
     restOffset.x,
     restOffset.y,
-    textColor,
+    idleTextColor,
     waterTextColor,
     iconColor,
     iconHoverColor,
@@ -569,7 +571,7 @@ function __OriginkitBase_SlideFillButton(props) {
           style={{
             position: "relative",
             zIndex: 2,
-            color: textColor,
+            color: idleTextColor,
             whiteSpace: "nowrap",
             ...fontStyles,
           }}
@@ -586,7 +588,7 @@ const __originkitPresetProps = {
     side: "right",
     size: 45,
     type: "symbol",
-    color: "#000000",
+    color: "#0d3b66",
     image: "",
     symbol: "→",
     padding: 0,

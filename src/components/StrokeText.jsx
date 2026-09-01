@@ -14,8 +14,8 @@ const DEFAULT_TEXT = 'VAKA ry';
 
 const StrokeText = ({
   text = DEFAULT_TEXT,
-  strokeColor="#f8fa8b",
-  fillColor="#efeff1",
+  strokeColor="#f4d35e",
+  fillColor="#ffffff",
   fontFamily = 'Cascadia Mono, sans-serif',
   strokeWidth = 1.2,
   drawDuration = 1.5,

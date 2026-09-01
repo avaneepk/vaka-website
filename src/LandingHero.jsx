@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import './Homepage.css'
-import StrokeText from './StrokeText.jsx';
+import StrokeText from './components/StrokeText.jsx';
 import vakaLogo from './assets/final-logo.png';
 import waves from './assets/waves (9).svg';
 import instagram from './assets/icons8-instagram.svg';
 import youtube from './assets/icons8-youtube.svg';
 import Navbar from './Navbar.jsx';
 import Globe, { preloadGlobeData } from "./components/originkit/ui/globe.jsx";
-import Grainient from './Grainient.jsx';
+import Grainient from './components/Grainient.jsx';
 
 
 function LandingHero() {
@@ -73,7 +73,7 @@ function LandingHero() {
   return (
   <main className="homepage">
       <Navbar />    
-    <section className="hero-landing" id="about">
+    <section className="hero-landing" id="home">
       {/* CHANGED: Grainient now absolutely fills the section via CSS
           (see .home-section--navy__grainient below) instead of sitting
           inline in the normal document flow. Wrapped it in a div with
@@ -122,7 +122,7 @@ function LandingHero() {
               <a href="https://www.instagram.com/vaka.ry/" target="_blank" rel="noopener noreferrer">
                 <img src={instagram} alt="Instagram logo" />
               </a>
-              <a href="https://www.youtube.com/@vaka_ry" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.youtube.com/@Vaka-ry" target="_blank" rel="noopener noreferrer">
                 <img src={youtube} alt="YouTube logo" />
               </a>
             </div>
