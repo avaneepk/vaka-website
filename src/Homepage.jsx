@@ -46,8 +46,8 @@ const items = [
     image: museumBg,
   },
   {
-    label: "Wappu and Fresher Events",
-    sublabel: "Cultural events and activities",
+    label: "Cultural Events",
+    sublabel: "Wappu and fresher events",
     description: "Vaka ry organizes various events and activities for students, including Wappu celebrations, fresher events, and other cultural activities. These events provide opportunities for students to socialize, network, and engage with the student community in Lahti.",
     linkText: "Send us a message for collaborations and invitations!",
     href: "mailto:projects@vakary.fi",
@@ -110,6 +110,7 @@ const contactSections = [
 function Homepage() {
 
   const [showForm, setShowForm] = useState(false);
+  const [mobileAccordionOpenHeight, setMobileAccordionOpenHeight] = useState(0);
   const nodeRef = useRef(null);
 
   const handleFormToggle = () => {
@@ -132,14 +133,22 @@ function Homepage() {
 
       <MemberSection />
 
-      <section className="home-section contact-us" id="join">
+      <section
+        className="home-section contact-us"
+        id="join"
+        style={{ "--mobile-accordion-open-height": `${mobileAccordionOpenHeight}px` }}
+      >
         <div className="home-section__texture" aria-hidden="true" />
         <div className="contact-us-header px-4">
           <h1>Contact Us</h1>
         </div>
         <div className="contact-us-content flex flex-column gap-6">
           <div className="contact-us-content-left">
-            <MotionAccordion items={contactSections} gap={10} />
+            <MotionAccordion
+              items={contactSections}
+              gap={10}
+              onAccordionHeightChange={setMobileAccordionOpenHeight}
+            />
           </div>
           <div className="contact-us-content-right">
             <div className="home-instagram-embed" aria-label="VAKA ry Instagram profile">

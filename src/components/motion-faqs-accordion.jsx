@@ -5,21 +5,30 @@ import { motion } from "motion/react";
 
 import { cn } from "/src/lib/utils.js";
 
-function AccordionItem({ item, isOpen, onToggle, itemId, panelId }) {
+function AccordionItem({ item, isOpen, onToggle, itemId, panelId, onMeasure }) {
   const contentRef = React.useRef(null);
+  const itemRef = React.useRef(null);
   const [contentH, setContentH] = React.useState(0);
 
   React.useEffect(() => {
     const el = contentRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(() => setContentH(el.scrollHeight));
+
+    const update = () => {
+      setContentH(el.scrollHeight);
+      onMeasure?.(isOpen ? itemRef.current?.scrollHeight ?? el.scrollHeight : 0);
+    };
+
+    const ro = new ResizeObserver(update);
     ro.observe(el);
-    setContentH(el.scrollHeight);
+    update();
+
     return () => ro.disconnect();
-  }, []);
+  }, [isOpen, onMeasure]);
 
   return (
     <motion.div
+      ref={itemRef}
       layout
       className={cn(
         "overflow-hidden rounded-[10px] bg-surface text-foreground bg-slate-50 shadow-lg w-full",
@@ -38,7 +47,7 @@ function AccordionItem({ item, isOpen, onToggle, itemId, panelId }) {
         onClick={onToggle}
         className="flex w-full cursor-pointer select-none items-center justify-between gap-4 px-7 py-5 text-left"
       >
-        <h2 className="font-display text-[clamp(1.2rem,1.6vw,1.3rem)] font-medium tracking-tight leading-snug">
+        <h2 className="font-display text-2xl font-medium tracking-tight leading-snug max-[500px]:text-md">
           {item.question}
         </h2>
 
@@ -50,7 +59,7 @@ function AccordionItem({ item, isOpen, onToggle, itemId, panelId }) {
             scale: isOpen ? 1.05 : 1,
           }}
           transition={{ type: "spring", stiffness: 480, damping: 28 }}
-          className="inline-flex size-12 shrink-0 items-center justify-center text-foreground"
+          className="inline-flex size-12 shrink-0 items-center justify-center text-foreground @media (max-width: 500px) { size-2 }"
         >
           {isOpen ? (
             <svg
@@ -112,7 +121,7 @@ function AccordionItem({ item, isOpen, onToggle, itemId, panelId }) {
           }}
           className="px-7 pb-7"
         >
-          <p className="font-body text-lg leading-8 tracking-normal text-foreground/75">
+          <p className="font-body text-md leading-8 tracking-normal text-foreground/75 max-[500px]:text-sm max-[500px]:leading-normal">
             {item.answer}
           </p>
         </motion.div>
@@ -121,13 +130,32 @@ function AccordionItem({ item, isOpen, onToggle, itemId, panelId }) {
   );
 }
 
-export function MotionAccordion({ items, gap = 10, className }) {
+export function MotionAccordion({ items, gap = 10, className, onAccordionHeightChange }) {
   const rawId = React.useId();
   const baseId = `accordion-${rawId.replace(/:/g, "")}`;
 
-  const [openIndex, setOpenIndex] = React.useState(null);
+  const [openIndexes, setOpenIndexes] = React.useState([]);
 
-  const toggle = (i) => setOpenIndex((prev) => (prev === i ? null : i));
+  const toggle = (i) =>
+    setOpenIndexes((prev) =>
+      prev.includes(i) ? prev.filter((index) => index !== i) : [...prev, i],
+    );
+
+  const itemHeights = React.useRef({});
+
+  const handleItemMeasure = React.useCallback(
+    (index, height) => {
+      itemHeights.current[index] = height;
+
+      const nextHeight = items.reduce((total, _, itemIndex) => {
+        const isActive = openIndexes.includes(itemIndex);
+        return total + (isActive ? itemHeights.current[itemIndex] ?? 0 : 0);
+      }, 0);
+
+      onAccordionHeightChange?.(nextHeight);
+    },
+    [items, openIndexes, onAccordionHeightChange],
+  );
 
   return (
     <div className={cn("w-full", className)}>
@@ -136,10 +164,11 @@ export function MotionAccordion({ items, gap = 10, className }) {
           <AccordionItem
             key={i}
             item={item}
-            isOpen={openIndex === i}
+            isOpen={openIndexes.includes(i)}
             onToggle={() => toggle(i)}
             itemId={`${baseId}-trigger-${i}`}
             panelId={`${baseId}-panel-${i}`}
+            onMeasure={(height) => handleItemMeasure(i, height)}
           />
         ))}
       </div>
