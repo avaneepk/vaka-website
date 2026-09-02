@@ -6,10 +6,24 @@ import waves from './assets/waves (9).svg';
 import { CSSTransition } from 'react-transition-group';
 
 export default function MemberSection() {
+  const formLink = 'https://docs.google.com/forms/d/1ZiPLqjR0MO_jCP6f7ZqurGi4SjjttGg4RE7i77ZF6J0/viewform?edit_requested=true';
   const [showForm, setShowForm] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia('(max-width: 500px)').matches);
   const nodeRef = useRef(null);
   const topWaveTrackRef = useRef(null);
   const bottomWaveTrackRef = useRef(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 500px)');
+    const handleMediaChange = (event) => setIsMobile(event.matches);
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener?.('change', handleMediaChange);
+
+    return () => {
+      mediaQuery.removeEventListener?.('change', handleMediaChange);
+    };
+  }, []);
 
   useEffect(() => {
     const tracks = [topWaveTrackRef.current, bottomWaveTrackRef.current].filter(Boolean);
@@ -69,7 +83,18 @@ export default function MemberSection() {
     return () => cleanups.forEach((cleanup) => cleanup());
   }, []);
 
-  const handleFormToggle = () => {
+  useEffect(() => {
+    if (isMobile) {
+      setShowForm(false);
+    }
+  }, [isMobile]);
+
+  const handleMobileFormOpen = (event) => {
+    event.preventDefault();
+    window.open(formLink, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleDesktopFormToggle = () => {
     setShowForm((current) => !current);
   };
 
@@ -113,8 +138,8 @@ export default function MemberSection() {
         <h1 className="font-display">Members</h1>
       </div>
       <div className="member-section__inner flex flex-column gap-6">
-        <p>
-          {' '}We're always looking for new members to join our association!
+        <p className="member-para @media (max-width: 400px) text-justify padding-0">
+          We're always looking for new members to join our association!
           <br /><br />
           Ideally, the member should be at least in the 2nd year of their studies, with some strong experience at their student guilds/union/associations from board work.
           We value experience and achievements the most, irrespective of the board position, as well as the knowledge about the student culture and traditions.
@@ -125,10 +150,10 @@ export default function MemberSection() {
           <div className="form-button">
             <SlideFillButton
               label={showForm ? 'Hide Form' : 'Membership Form'}
-              onClick={handleFormToggle}
+              onClick={isMobile ? handleMobileFormOpen : handleDesktopFormToggle}
               width="100%"
               height="100%"
-              rounded={30}
+              rounded={40}
               padding={0}
               font={{
                 fontFamily: 'Inter',
@@ -145,22 +170,24 @@ export default function MemberSection() {
           </div>
         </div>
 
-        <CSSTransition
-          in={showForm}
-          timeout={300}
-          classNames="registration-form"
-          unmountOnExit
-          nodeRef={nodeRef}
-        >
-          <div className="registration-form" ref={nodeRef}>
-            <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLScK0oUf5fOAoolFihr802107wgenbFER7D-bCTf-FCNwVo-Tw/viewform?embedded=true"
-              style={{ width: '100%', height: '100%', border: 'none' }}
-              title="VAKA ry registration form"
-              className="registration-form__iframe"
-            />
-          </div>
-        </CSSTransition>
+        {!isMobile && (
+          <CSSTransition
+            in={showForm}
+            timeout={300}
+            classNames="registration-form"
+            unmountOnExit
+            nodeRef={nodeRef}
+          >
+            <div className="registration-form" ref={nodeRef}>
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLScK0oUf5fOAoolFihr802107wgenbFER7D-bCTf-FCNwVo-Tw/viewform?embedded=true"
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                title="VAKA ry registration form"
+                className="registration-form__iframe"
+              />
+            </div>
+          </CSSTransition>
+        )}
       </div>
       <div className="member-section__wave member-section__wave--bottom" aria-hidden="true">
         <div className="member-wave-track" ref={bottomWaveTrackRef}>

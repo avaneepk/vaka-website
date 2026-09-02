@@ -106,7 +106,7 @@
   height: 500px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   .navbar-shell {
     position: fixed;
     top: 1.2rem;
@@ -241,26 +241,3 @@
   }
 }
 
-@media (max-width: 640px) {
-  .navbar-shell {
-    top: 0.75rem;
-    width: calc(100% - 1.5rem);
-  }
-
-  .spotlight-nav {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .spotlight-nav__list {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.15rem;
-  }
-
-  .spotlight-nav__link {
-    padding: 0.8rem 0.9rem;
-    font-size: 0.8rem;
-  }
-}

@@ -16,7 +16,7 @@ const items = [
   {
     label: "Kyykkä Events",
     sublabel: "Training, tournaments, and events",
-    description: "Kyykkä is a traditional Finnish sport that involves throwing wooden bats (Karttu) at a set of skittles (kyykkä).The objective is to knock down as many skittles as possible while adhering to specific rules and techniques. Vaka organizes kyykkä events, including training sessions, tournaments, and other related activities, to promote and preserve this unique Finnish sport amongst the diverse community of LUT & LAB students in Lahti. Vaka also sends a team to compete in the kyykkä championships hosted by other cities. Send us a message or email for collaborations and invitations!",
+    description: "Kyykkä is a traditional Finnish sport that involves throwing wooden bats (Karttu) at a set of skittles (kyykkä). Vaka organizes kyykkä events, including training sessions, tournaments, and other related activities, to promote and preserve this unique Finnish sport amongst the diverse community of LUT & LAB students in Lahti. Vaka also sends a team to compete in the kyykkä championships hosted by other cities. Send us a message or email for collaborations and invitations!",
     linkText: "More information about Kyykkä",
     href: "https://en.wikipedia.org/wiki/Finnish_skittles",
     image: kyykkaBg,

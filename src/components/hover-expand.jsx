@@ -15,6 +15,20 @@ function HoverExpand({
   className,
 }) {
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 500px)');
+    const sync = (event) => setIsMobile(event.matches);
+
+    setIsMobile(mediaQuery.matches);
+    mediaQuery.addEventListener?.('change', sync);
+
+    return () => mediaQuery.removeEventListener?.('change', sync);
+  }, []);
+
+  const effectiveCollapsedHeight = isMobile ? Math.max(collapsedHeight, 104) : collapsedHeight;
+  const effectiveExpandedHeight = isMobile ? Math.max(expandedHeight, 600) : expandedHeight;
 
   const handleCardToggle = (index) => {
     setHoveredIndex((current) => (current === index ? null : index));
@@ -33,7 +47,7 @@ function HoverExpand({
             <motion.div
               className="relative w-full overflow-hidden cursor-default"
               animate={{
-                height: isHovered ? expandedHeight : collapsedHeight,
+                height: isHovered ? effectiveExpandedHeight : effectiveCollapsedHeight,
                 opacity: isOtherHovered ? 0.38 : 1,
               }}
               transition={{
@@ -51,7 +65,7 @@ function HoverExpand({
               aria-expanded={isHovered}
             >
               <motion.div
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full z-0"
                 initial={false}
                 animate={{
                   opacity: isHovered ? 1 : 0,
@@ -74,17 +88,22 @@ function HoverExpand({
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.10),transparent_38%),linear-gradient(to_top,_rgba(0,0,80,0.75),rgba(0,0,30,0.40)_100%,rgba(0,0,99,1))]" />
               </motion.div>
 
-              {/* CHANGED: switched from "items-end" (bottom-aligned) to
-                  "items-start" (top-aligned) so the text block sits at the
-                  top of the row instead of the bottom. Also switched the
-                  inner layout from a row (justify-between) to a column,
-                  since the description now needs its own full line below
-                  the label instead of squeezing in beside it. */}
-              <div className="absolute inset-0 flex items-start px-5 pt-4">
+              <div className="absolute inset-0 z-10 flex items-start px-5 pt-4">
                 <div className="flex w-full flex-col gap-2">
-                  {/* Top row: number + label + sublabel */}
-                  <div className="flex w-full items-baseline justify-between gap-4">
-                    <div className="flex items-baseline gap-3 min-w-0 px-6">
+                  <div
+                    className={
+                      isMobile
+                        ? "flex w-full flex-col items-start gap-1 px-6"
+                        : "flex w-full items-baseline justify-between gap-4 px-6"
+                    }
+                  >
+                    <div
+                      className={
+                        isMobile
+                          ? "flex w-full flex-col items-start gap-1"
+                          : "flex items-baseline gap-3 min-w-0"
+                      }
+                    >
                       <motion.span
                         className="font-display text-lg tabular-nums shrink-0 opacity-70"
                         animate={{
@@ -97,8 +116,12 @@ function HoverExpand({
                       </motion.span>
 
                       <motion.span
-                        className="font-display font-medium tracking-tight truncate"
-                        style={{ fontSize: isHovered ? "clamp(1.1rem, 2.2vw, 2rem)" : "clamp(1.1rem, 2.2vw, 1.5rem)" }}
+                        className="font-display font-medium tracking-tight"
+                        style={{
+                          fontSize: isHovered
+                            ? "clamp(1.1rem, 2.2vw, 2rem)"
+                            : "clamp(1.1rem, 2.2vw, 1.5rem)",
+                        }}
                         animate={{
                           color: isHovered ? "#f8f3ea" : "#0d3b66",
                         }}
@@ -110,7 +133,11 @@ function HoverExpand({
 
                     {item.sublabel && (
                       <motion.span
-                        className="font-display text-xs tracking-[0.14em] uppercase shrink-0"
+                        className={
+                          isMobile
+                            ? "font-display text-[0.62rem] tracking-[0.15em] uppercase"
+                            : "font-display text-xs tracking-[0.14em] uppercase shrink-0"
+                        }
                         animate={{
                           color: isHovered ? "#f8f3ea" : "#0d3b66",
                           opacity: isHovered ? 1 : 0.7,
