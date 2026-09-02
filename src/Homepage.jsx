@@ -70,7 +70,7 @@ const contactSections = [
         For any queries related to events, membership, or general inquiries,
         please contact us at{" "}
         <a href="mailto:board@vakary.fi" className="email-link">
-          board@vakary.fi
+         board@vakary.fi
         </a>
         .
         <br />

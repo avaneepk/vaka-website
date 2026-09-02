@@ -515,12 +515,25 @@ p,
 }
 
 
-  .email-link { color: var(--primary-blue); }
+  .email-link {
+    color: var(--primary-blue);
+    font-weight: 700;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+  }
   
   .email-link:hover, .email-link:focus-visible { 
-    color: #0b2e52; 
-    background-color: var(--accent-grey);
+    color: var(--accent-grey); 
+    background-color: var(--primary-blue);
     font-weight: 700; }
+
+  [role="region"] a {
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
+  }
 
   .home-instagram-embed {
   background: rgba(255, 255, 255, 0.75);
