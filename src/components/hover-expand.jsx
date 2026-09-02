@@ -11,7 +11,7 @@ function HoverExpand({
   // CHANGED: bumped default expanded height a bit to make more room for
   // longer descriptions. Feel free to raise this further (e.g. 380–420)
   // if you have very long paragraphs.
-  expandedHeight = 360,
+  expandedHeight = 400,
   className,
 }) {
   const [hoveredIndex, setHoveredIndex] = React.useState(null);
@@ -28,7 +28,7 @@ function HoverExpand({
   }, []);
 
   const effectiveCollapsedHeight = isMobile ? Math.max(collapsedHeight, 104) : collapsedHeight;
-  const effectiveExpandedHeight = isMobile ? Math.max(expandedHeight, 600) : expandedHeight;
+  const effectiveExpandedHeight = isMobile ? Math.max(expandedHeight, 650) : expandedHeight;
 
   const handleCardToggle = (index) => {
     setHoveredIndex((current) => (current === index ? null : index));
@@ -93,15 +93,15 @@ function HoverExpand({
                   <div
                     className={
                       isMobile
-                        ? "flex w-full flex-col items-start gap-1 px-6"
+                        ? "flex w-full flex-col text-4xl items-start gap-1 px-6"
                         : "flex w-full items-baseline justify-between gap-4 px-6"
                     }
                   >
                     <div
                       className={
                         isMobile
-                          ? "flex w-full flex-col items-start gap-1"
-                          : "flex items-baseline gap-3 min-w-0"
+                          ? "flex w-full flex-col text-4xl items-start gap-1"
+                          : "flex items-baseline text-4xl gap-3 min-w-0"
                       }
                     >
                       <motion.span
@@ -116,7 +116,7 @@ function HoverExpand({
                       </motion.span>
 
                       <motion.span
-                        className="font-display font-medium tracking-tight"
+                        className="font-display text-4xl font-medium tracking-tight"
                         style={{
                           fontSize: isHovered
                             ? "clamp(1.1rem, 2.2vw, 2rem)"

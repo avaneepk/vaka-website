@@ -606,9 +606,9 @@ p,
     display: flex;
   } 
 
+
   .home-instagram-embed {
-    max-width: 80%;
-    width: min(700%, 18rem);
+    visibility: hidden;
   }
 
   .home-section__center { flex-direction: column; gap: 0rem; }
@@ -643,6 +643,10 @@ p,
     min-width: 24rem;
     padding: 1rem;
     margin-top: 2rem;
+  }
+
+  .contact-us {
+    max-height: 30rem;
   }
 
   .contact-us-header{
