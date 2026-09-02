@@ -2,6 +2,7 @@
   display: block;
   font-family: var(--stroke-text-font, Arial, sans-serif);
   width: 100%;
+  font-size: 1.5rem;
   color:  #ffffff;
   line-height: 0;
 }
@@ -22,9 +23,10 @@
   user-select: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .stroke-text__svg {
-    height: var(--stroke-text-height-mobile, 150px);
+    height: var(--stroke-text-height-mobile, 200px);
     align-items: first baseline;
   }
+
 }

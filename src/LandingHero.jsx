@@ -114,8 +114,7 @@ function LandingHero() {
             <p className="home-copy home-fade-in">
               Vesijarven Academic Kippistely Association VAKA ry <br />
               <br />
-              Promoting and Preserving the culture and history for students
-              of LUT & LAB higher education institutions in Lahti
+              Building community, culture, and unforgettable student experiences for LUT and LAB students in Lahti
             </p>
             {/* CHANGED: added "home-fade-in" */}
             <div className="home-section__socials home-fade-in">

@@ -10,6 +10,7 @@ import magazineBg from './assets/magazine-bg.jpg';
 import museumBg from './assets/museum-bg.jpg';
 import { MotionAccordion } from './components/motion-faqs-accordion.jsx';
 import MemberSection from './MemberSection.jsx';
+import FooterSection from './FooterSection.jsx';
 
 const items = [
   {
@@ -160,6 +161,7 @@ function Homepage() {
           </div>
         </div>
       </section>
+      <FooterSection />
     </main>
   )
 }

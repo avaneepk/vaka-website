@@ -20,6 +20,7 @@ function Navbar({
   const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
   const [hoverX, setHoverX] = useState(null);
   const [isDark, setIsDark] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const spotlightX = useRef(0);
   const ambienceX = useRef(0);
@@ -94,7 +95,12 @@ function Navbar({
 
   const handleItemClick = (item, index) => {
     setActiveIndex(index);
+    setMobileMenuOpen(false);
     onItemClick?.(item, index);
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen((open) => !open);
   };
 
   return (
@@ -141,6 +147,48 @@ function Navbar({
           }}
         />
       </nav>
+
+      <button
+        type="button"
+        className={cn('mobile-nav-toggle', mobileMenuOpen && 'mobile-nav-toggle--open')}
+        onClick={toggleMobileMenu}
+        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+        aria-expanded={mobileMenuOpen}
+      >
+        <span className="mobile-nav-toggle__bar" />
+        <span className="mobile-nav-toggle__bar" />
+        <span className="mobile-nav-toggle__bar" />
+      </button>
+
+      <div
+        className={cn('mobile-nav-backdrop', mobileMenuOpen && 'mobile-nav-backdrop--open')}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden={!mobileMenuOpen}
+      />
+
+      <aside
+        className={cn('mobile-nav-panel', mobileMenuOpen && 'mobile-nav-panel--open')}
+        aria-label="Mobile navigation"
+      >
+        <ul className="mobile-nav-panel__list">
+          {items.map((item, index) => (
+            <li key={item.label} className="mobile-nav-panel__item">
+              <a
+                href={item.href}
+                data-index={index}
+                onClick={() => handleItemClick(item, index)}
+                className={cn(
+                  'mobile-nav-panel__link',
+                  activeIndex === index && 'mobile-nav-panel__link--active'
+                )}
+                aria-current={activeIndex === index ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </aside>
     </header>
   );
 }
