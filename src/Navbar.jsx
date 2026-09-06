@@ -108,7 +108,7 @@ function Navbar({
       <nav
         ref={navRef}
         className={cn(
-          'spotlight-nav',
+          'spotlight-nav home-fade-in',
           isDark && 'spotlight-nav--dark'
         )}
         aria-label="Main navigation"

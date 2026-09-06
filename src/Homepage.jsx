@@ -124,7 +124,7 @@ function Homepage() {
       <section className="home-section home-section--projects" id="projects">
         <div className="home-section__texture" aria-hidden="true" />
         <div className="project-header mb-10">
-          <h1><span>Projects</span></h1>
+          <h1><span className="px-4">Projects</span></h1>
         </div>
         <div className="home-section__mission-grid">
         <HoverExpand items={items} />

@@ -6,7 +6,6 @@ import fresherweeks from './assets/Fresher-weeks.jpg';
 const DEFAULT_ITEMS = [
     { image: 'https://picsum.photos/id/1015/900/1200', label: 'Lake clean-up', link: '#join', alt: 'A rocky lakeside landscape' },
     { image: 'https://picsum.photos/id/1018/900/1200', label: 'Open-water swim', link: '#join', alt: 'A mountain ridge above water' },
-    { image: fresherweeks, label: 'Fresher weeks', link: '#join', alt: 'A waterfall surrounded by greenery' },
     { image: 'https://picsum.photos/id/1043/900/1200', label: 'Harbour gathering', link: '#join', alt: 'A harbour beside calm water' },
     { image: 'https://picsum.photos/id/1044/900/1200', label: 'Evening by the lake', link: '#join', alt: 'A city skyline near the water' }
 ]
@@ -145,7 +144,7 @@ function AccordionGallery({
       style={{
         '--ag-accent': accentColor,
         '--ag-overlay': overlayColor,
-        '--ag-text': textColor,
+        '--ag-text': textColor,                                     
         '--ag-gap': `${gap}px`,
         '--ag-radius': `${radius}px`,
         height: vertical ? `${Math.round(height * 1.6)}px` : `${height}px`

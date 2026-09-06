@@ -2,12 +2,14 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
+import uparrow from "/src/assets/uparrow.png";
+import downarrow from "/src/assets/downarrow.png";
 
 import { cn } from "/src/lib/utils.js";
 
 function HoverExpand({
   items,
-  collapsedHeight = 68,
+  collapsedHeight = 104,
   // CHANGED: bumped default expanded height a bit to make more room for
   // longer descriptions. Feel free to raise this further (e.g. 380–420)
   // if you have very long paragraphs.
@@ -27,7 +29,7 @@ function HoverExpand({
     return () => mediaQuery.removeEventListener?.('change', sync);
   }, []);
 
-  const effectiveCollapsedHeight = isMobile ? Math.max(collapsedHeight, 104) : collapsedHeight;
+  const effectiveCollapsedHeight = isMobile ? Math.max(collapsedHeight, 84) : collapsedHeight;
   const effectiveExpandedHeight = isMobile ? Math.max(expandedHeight, 650) : expandedHeight;
 
   const handleCardToggle = (index) => {
@@ -88,27 +90,27 @@ function HoverExpand({
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.10),transparent_38%),linear-gradient(to_top,_rgba(0,0,80,0.75),rgba(0,0,30,0.40)_100%,rgba(0,0,99,1))]" />
               </motion.div>
 
-              <div className="absolute inset-0 z-10 flex items-start px-5 pt-4">
+              <div className="absolute inset-0 z-10 flex items-start px-0 pt-4 ">
                 <div className="flex w-full flex-col gap-2">
                   <div
                     className={
                       isMobile
-                        ? "flex w-full flex-col text-4xl items-start gap-1 px-6"
-                        : "flex w-full items-baseline justify-between gap-4 px-6"
+                        ? "flex w-full items-start justify-between gap-1 px-4 py-5 max-[328px]: py-1"
+                        : "flex w-full items-baseline justify-between gap-4 px-8 pr-20 py-4"
                     }
                   >
                     <div
                       className={
                         isMobile
-                          ? "flex w-full flex-col text-4xl items-start gap-1"
+                          ? "flex min-w-0 flex-1 items-baseline gap-3"
                           : "flex items-baseline text-4xl gap-3 min-w-0"
                       }
                     >
                       <motion.span
-                        className="font-display text-lg tabular-nums shrink-0 opacity-70"
+                        className="font-display text-lg tabular-nums shrink-0 opacity-100"
                         animate={{
-                          color: isHovered ? "#f8f3ea" : "#f4d35e",
-                          opacity: isHovered ? 0.9 : 0.65,
+                          color: isHovered ? "#f8f3ea" : "#000000",
+                          opacity: isHovered ? 1 : 0.65,
                         }}
                         transition={{ duration: 0.2 }}
                       >
@@ -119,8 +121,8 @@ function HoverExpand({
                         className="font-display text-4xl font-medium tracking-tight"
                         style={{
                           fontSize: isHovered
-                            ? "clamp(1.1rem, 2.2vw, 2rem)"
-                            : "clamp(1.1rem, 2.2vw, 1.5rem)",
+                            ? "clamp(1.7rem, 2.2vw, 2rem)"
+                            : "clamp(1.7rem, 2.2vw, 2rem)",
                         }}
                         animate={{
                           color: isHovered ? "#f8f3ea" : "#0d3b66",
@@ -131,11 +133,27 @@ function HoverExpand({
                       </motion.span>
                     </div>
 
+                    <motion.span
+                      className={
+                        isMobile
+                          ? "flex h-6 w-6 shrink-0 items-center justify-center text-xl font-normal leading-none"
+                          : "hidden"
+                      }
+                      animate={{
+                        color: isHovered ? "#f8f3ea" : "#0d3b66",
+                        borderColor: isHovered ? "#f8f3ea" : "#0d3b66",
+                      }}
+                      transition={{ duration: 0.2 }}
+                      aria-hidden="true"
+                    >
+                      {isHovered ? <img src={uparrow} alt="Up arrow" /> : <img src={downarrow} alt="Down arrow" />}
+                    </motion.span>            
+
                     {item.sublabel && (
                       <motion.span
                         className={
                           isMobile
-                            ? "font-display text-[0.62rem] tracking-[0.15em] uppercase"
+                            ? "hidden"
                             : "font-display text-xs tracking-[0.14em] uppercase shrink-0"
                         }
                         animate={{

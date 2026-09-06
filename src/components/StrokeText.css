@@ -2,9 +2,15 @@
   display: block;
   font-family: var(--stroke-text-font, Arial, sans-serif);
   width: 100%;
+  height: 20vh;
+  max-height: var(--stroke-text-height, 100%);
+  margin: 0 1rem 0 1rem;
+  justify-content: center;
+  align-items: center;
   font-size: 1.5rem;
   color:  #ffffff;
   line-height: 0;
+
 }
 
 .stroke-text--hover {
@@ -13,9 +19,11 @@
 
 .stroke-text__svg {
   font-family: inherit;
-  display: block;
+  display: flex;
   width: 100%;
-  height: var(--stroke-text-height, 160px);
+  height: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .stroke-text__stroke,
@@ -23,10 +31,15 @@
   user-select: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   .stroke-text__svg {
-    height: var(--stroke-text-height-mobile, 200px);
+    height: auto;
     align-items: first baseline;
   }
 
+  .stroke-text {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }

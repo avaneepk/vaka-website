@@ -134,11 +134,11 @@ export default function MemberSection() {
         />
       </div>
       <div className="home-section__texture member-section__texture" aria-hidden="true" />
-      <div className="member-section-header px-4">
-        <h1 className="font-display">Members</h1>
+      <div className="member-section-header ">
+        <h1 className="font-display px-3">Members</h1>
       </div>
       <div className="member-section__inner flex flex-column gap-6">
-        <p className="member-para @media (max-width: 400px) text-justify padding-0">
+        <p className="member-para px-4 @media (max-width: 400px) text-justify padding-0">
           We're always looking for new members to join our association!
           <br /><br />
           Ideally, the member should be at least in the 2nd year of their studies, with some strong experience at their student guilds/union/associations from board work.
@@ -162,7 +162,7 @@ export default function MemberSection() {
                 lineHeight: '0.2em',
                 textAlign: 'left',
               }}
-              water={{ color: '#c1990a', direction: 'up', textColor: '#FFFFFF', waveSpeed: 100, defaultFill: 0 }}
+              water={{ color: '#0d1466', direction: 'up', textColor: '#FFFFFF', waveSpeed: 100, defaultFill: 0 }}
               colors={{ fill: '#f2f5f6', textColor: '#141212' }}
               border={{ borderWidth: 2, borderStyle: 'solid', borderColor: '#00000030' }}
               boxShadow="0 4px 12px rgba(0, 0, 0, 0.15)"

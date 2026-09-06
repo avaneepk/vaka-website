@@ -20,7 +20,7 @@ html {
 }
 
 body, p, a, button, input, textarea, select {
-  color: var(--primary-blue);
+  color: black; 
   font-family: var(--font-body);
 }
 
@@ -47,7 +47,7 @@ h6 {
 
 p,
 .font-body {
-  color: var(--primary-blue);
+  color: black;
   font-family: var(--font-body);
   font-weight: 400;
 }
@@ -81,16 +81,13 @@ p,
 
 
 .hero-landing {
-    padding-top: 5.5rem;
+    padding-top: 4rem;
     color: var(--accent-white);
     /* CHANGED: removed the linear-gradient background — Grainient now
        provides the background instead. */
-    min-height: var(--section-height, 105vh);
-    /* ADDED: needed so Grainient's absolute positioning is contained to
-       this section rather than escaping to a further-up ancestor. Your
-       .home-section rule already sets position: relative, so this line
-       is only needed if that base rule ever changes — safe to include
-       either way for clarity. */
+    min-height: var(--section-height, 85vh);
+    height: var(--section-height, 102vh);
+    max-height: var(--section-height, 110vh);
     position: relative;
     z-index: 1;
 }
@@ -170,6 +167,17 @@ p,
 }
 .home-section__center { align-items: center; display: flex; gap: 5rem; height: 100%; justify-content: center; position: relative; width: 100%; }    
 .home-section_left { max-width: 46rem; position: relative; z-index: 1; }
+
+.home-text-top { 
+  color: var(--secondary-gold); 
+  font-size: clamp(1rem, 1.7vw, 1.3rem); 
+  line-height: 1.5; 
+  margin: 3rem 3rem 0.1rem 2.5rem; 
+  max-width: 40rem; 
+}
+
+
+
 .home-section__mission-grid {
   align-items: flex-start;
   display: flex;
@@ -225,21 +233,20 @@ p,
 }
 
 
-.member-section h1 {
-  color: var(--accent-white);
-  font-family: var(--font-display);  
-  font-size: clamp(4rem, 10vw, 9.5rem);
-  font-weight: 600;
-  line-height: 0.82;
-  letter-spacing: -0.07em;
-  margin: 0;
-  white-space: nowrap;
-}
-
 .home-section h1 span { display: block; }
 .stroke-heading { color: transparent; -webkit-text-stroke: 2px var(--secondary-gold); text-shadow: 5px 5px 0 var(--secondary-gold); }
-.home-copy { font-family: arial ; color: var(--secondary-gold); font-size: clamp(1rem, 1.7vw, 1.3rem); line-height: 1.5; margin: 0 3rem 2rem 3rem; max-width: 40rem; }
-.home-action { color: var(--secondary-gold); align-items: center; margin-left: 4rem; border-bottom: 1px solid currentColor; display: inline-flex; font: 700 .8rem/1 monospace; gap: 1rem; letter-spacing: .07em; padding-bottom: .7rem; text-decoration: none; text-transform: uppercase; }
+
+.home-copy { 
+  color: var(--secondary-gold); 
+  font-size: clamp(0.7rem, 1.7vw, 1.1rem);
+  height: 6rem;
+  padding-top: 4rem;
+  font-style: italic;
+  margin: 2rem 0 2rem 2.5rem; 
+  max-width: 100%;
+  }
+
+.home-action { color: var(--secondary-gold); align-items: center; margin-left: 8rem; border-bottom: 1px solid currentColor; display: inline-flex; font: 700 .8rem/1 monospace; gap: 1rem; letter-spacing: .07em; padding-bottom: .7rem; text-decoration: none; text-transform: uppercase; }
 .home-action span { color: inherit; font-size: 1.2rem; }
 .home-scroll-hint { color: var(--secondary-gold); bottom: 2.5rem; font: .65rem/1 monospace; letter-spacing: .12em; opacity: .55; position: absolute; right: clamp(1.5rem, 5vw, 5rem); text-transform: uppercase; transform: rotate(-90deg); transform-origin: right; }
 
@@ -256,10 +263,23 @@ p,
 .member-section {
   background: transparent;
   min-height: var(--section-height, 20vh);
+  height: auto;
+  max-height: var(--section-height, 180vh);
   overflow: hidden;
   padding: 10rem 0 12rem 0;
   position: relative;
   z-index: 1;
+}
+
+.member-section h1 {
+  color: var(--accent-white);
+  font-family: var(--font-display);  
+  font-size: clamp(4rem, 10vw, 9.5rem);
+  font-weight: 600;
+  line-height: 0.82;
+  letter-spacing: -0.07em;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .member-section__grainient {
@@ -603,12 +623,6 @@ p,
     padding: 0 1rem 0 1rem;
   }
 
-  .home-copy { 
-    margin: 0 1rem 2rem 1rem; 
-    max-width: 100%; 
-    padding-left: 1rem; 
-    padding-right: 1rem; }
-
   .home-section--projects {
     min-height: var(--section-height, 50vh);
     padding: 3rem 2rem 5rem 2rem;
@@ -641,11 +655,37 @@ p,
     top: 0;
   }
 
+  .home-text-top {
+    margin: 0rem 1rem 0rem 1rem;
+    font-size: clamp(0.9rem, 1.7vw, 1rem);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .home-copy { 
+    margin: 0rem 1rem 0rem 1rem; 
+    max-width: 100%;
+    font-size: clamp(0.9rem, 1.7vw, 1rem); 
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
   .home-action { margin-left: 1rem; }
 
+  .home-section__socials {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
   .hero-landing { 
-    min-height: var(--section-height, 120vh);
-    padding-top: 0.5rem;
+    min-height: var(--section-height, 100vh);
+    padding-top: 0.25rem;
     }
 
   .stroke-heading { -webkit-text-stroke-width: 1px; }
@@ -729,4 +769,7 @@ p,
     visibility: hidden;
   }
 
+  .item-sublabel {
+    visibility: hidden;
+  }
 }

@@ -27,7 +27,7 @@ const StrokeText = ({
   fontSize = 200,
   fontWeight = 800,
   letterSpacing = -4,
-  wordSpacing = -60,
+  wordSpacing = -80,
   reverse = false,
   className = '',
   style = {}
@@ -71,12 +71,12 @@ const StrokeText = ({
       }
       if (!bbox || !bbox.width) return;
 
-      const pad = Math.max(Number(strokeWidth) || 1, fontSize * 0.1);
+      const pad = Math.max(Number(strokeWidth) || 1, fontSize * 0.2);
       const next = {
-        x: bbox.x - pad,
-        y: bbox.y - pad,
-        width: bbox.width + pad * 2,
-        height: bbox.height + pad * 2
+        x: bbox.x - (pad * 0.5),
+        y: bbox.y + pad,
+        width: bbox.width + pad * 1,
+        height: bbox.height + pad * 1
       };
 
       setBox(prev =>
@@ -197,17 +197,20 @@ const StrokeText = ({
     };
   }, [box, dash, drawDuration, fillDelay, stagger, ease, trigger, fillMode, reverse]);
 
-  const viewBox = box ? `${box.x} ${box.y} ${box.width} ${box.height}` : `0 ${-fontSize} 600 ${fontSize * 1.3}`;
+  const viewBox = box ? `${box.x} ${box.y} ${box.width} ${box.height}` : `0 ${-fontSize} 600 ${fontSize * 1}`;
 
   return (
     <span
       ref={rootRef}
       className={`stroke-text ${trigger === 'hover' ? 'stroke-text--hover' : ''} ${className}`.trim()}
-      style={{ ...style, '--stroke-text-height': `${Math.round(fontSize * 1.3)}px` }}
+      style={{ ...style, '--stroke-text-height': `${Math.round(fontSize * 1)}px` }}
       role="img"
       aria-label={String(text ?? '')}
     >
-      <svg className="stroke-text__svg" viewBox={viewBox} preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <svg className="stroke-text__svg" viewBox={viewBox} 
+          width={box ? box.width : undefined}
+          height={box ? box.height : undefined}
+          preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         {fillMode === 'wipe' && box && (
           <defs>
             <clipPath id={wipeId} clipPathUnits="userSpaceOnUse">
