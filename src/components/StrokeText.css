@@ -41,5 +41,17 @@
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
+    height: 10vh;
+  }
+}
+
+@media (max-width: 350px) {
+  
+
+  .stroke-text {
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 10vh;
   }
 }

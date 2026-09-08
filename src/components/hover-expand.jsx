@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion } from "motion/react";
 import uparrow from "/src/assets/uparrow.png";
 import downarrow from "/src/assets/downarrow.png";
+import "/src/Homepage.css";
 
 import { cn } from "/src/lib/utils.js";
 
@@ -107,7 +108,7 @@ function HoverExpand({
                       }
                     >
                       <motion.span
-                        className="font-display text-lg tabular-nums shrink-0 opacity-100"
+                        className="font-display text-md tabular-nums shrink-0 opacity-100"
                         animate={{
                           color: isHovered ? "#f8f3ea" : "#000000",
                           opacity: isHovered ? 1 : 0.65,
@@ -118,12 +119,7 @@ function HoverExpand({
                       </motion.span>
 
                       <motion.span
-                        className="font-display text-4xl font-medium tracking-tight"
-                        style={{
-                          fontSize: isHovered
-                            ? "clamp(1.7rem, 2.2vw, 2rem)"
-                            : "clamp(1.7rem, 2.2vw, 2rem)",
-                        }}
+                        className=" item-label font-display tracking-tight "
                         animate={{
                           color: isHovered ? "#f8f3ea" : "#0d3b66",
                         }}
@@ -136,7 +132,7 @@ function HoverExpand({
                     <motion.span
                       className={
                         isMobile
-                          ? "flex h-6 w-6 shrink-0 items-center justify-center text-xl font-normal leading-none"
+                          ? "flex h-4 w-4 shrink-0 items-center justify-center leading-none"
                           : "hidden"
                       }
                       animate={{
@@ -204,7 +200,7 @@ function HoverExpand({
                           item.onLearnMore();
                         }
                       }}
-                      className="mt-1 px-6 inline-flex items-center gap-2 self-start text-m font-medium transition-colors"
+                      className="font-body mt-1 px-6 inline-flex items-center gap-2 self-start text-m font-medium transition-colors"
                       style={{ color: "#f4d35e" }}
                       initial={{ opacity: 0, y: -8 }}
                       animate={{
